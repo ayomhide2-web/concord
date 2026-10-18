@@ -53,7 +53,7 @@ shortly after the redemption), `journal.csv` (eight journal entries) and `instru
 
 ## Before you start
 
-- Node 24+ and pnpm 9+, `pnpm install` as usual. `pnpm build` is only needed if you will run
+- Node 24+ and pnpm 10.22 (see CONTRIBUTING), `pnpm install` as usual. `pnpm build` is only needed if you will run
   the built server (`pnpm start`); the script itself runs on `tsx` from source.
 - Outbound access — testnet RPC at `soroban-testnet.stellar.org` and friendbot funding.
 - A few minutes of wall time. Transactions settle in seconds and the script polls with backoff,
