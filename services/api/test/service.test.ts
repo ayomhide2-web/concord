@@ -656,6 +656,9 @@ describe("documented input files", () => {
       const row = rows.find((line) => line.startsWith(`| ${file} |`));
       expect(row, `the README has no ${file} row in its Input files table`).toBeTruthy();
       expect(documentedColumns(row!), `${kind} template vs the README ${file} row`).toEqual(headers);
+    }
+  });
+});
 
 describe("README CLI examples", () => {
   // Guards the README against drift: a command renamed or removed from the usage text,
