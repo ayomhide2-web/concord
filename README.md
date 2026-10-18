@@ -194,7 +194,9 @@ It was a web search, with several sources read only as summaries, so treat it as
 | Controls log | Every freeze, authorisation change and clawback, tied to the instruction that caused it |
 | Audit export | Regulator- and auditor-ready reports |
 
-Read-only. Concord never holds keys or moves money.
+Read-only. Concord never holds keys or moves money. The reasoning, the one exception (the testnet
+practice script), and the rules for proposals that would add signing are in
+[`docs/adr/0004-read-only.md`](./docs/adr/0004-read-only.md).
 
 ## Who buys it
 
