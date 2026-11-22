@@ -767,6 +767,22 @@ describe("chain endpoints", () => {
     expect(found[0]!.asset).toBe(`BENJI:${i2}`);
     expect(found[0]!.contractId).toMatch(/^C[A-Z2-7]{55}$/);
   });
+
+  it("describes a classic asset only when Horizon lists it", async () => {
+    const issuer = key();
+    const url = `https://horizon.example/assets?asset_code=${encodeURIComponent("FUND")}&asset_issuer=${issuer}&limit=200`;
+    const { calls, deps } = scripted({
+      [url]: [
+        () => new Response(JSON.stringify({ _embedded: { records: [{ asset_code: "FUND", asset_issuer: issuer }] } })),
+        () => new Response(JSON.stringify({ _embedded: { records: [] } })),
+      ],
+    });
+    const source = new StellarSource(network(["https://rpc.example"]), deps);
+    const asset = { id: `FUND:${issuer}`, code: "FUND", issuer };
+    expect(await source.describe(asset)).toEqual({ decimals: 7 });
+    expect(await source.describe(asset)).toBeUndefined();
+    expect(calls.map((c) => c.url)).toEqual([url, url]);
+  });
 });
 
 describe("what ships", () => {
